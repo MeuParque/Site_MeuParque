@@ -1,0 +1,22 @@
+.div_componente_missao{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    background-color: white;
+    border-radius: 20px;
+    width: 300px;
+    height: 280px;
+    padding: 20px;
+    gap: 20px;
+    font-size: 14px;
+    transition: box-shadow 0.3s ease;
+}
+
+.div_componente_missao:hover{
+    box-shadow: 0px 12px 24px -8px rgba(3, 2, 19, 0.25);
+}
+
+.img_componente_parque{
+    width: 60px;
+}
+
