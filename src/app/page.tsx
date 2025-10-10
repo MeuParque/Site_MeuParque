@@ -75,7 +75,7 @@ export default function Home() {
           <div className="texto_home">
             <h1 className="tit_home">Descubra Novos Espaços!</h1>
             <h2 className="desc_home">Explores parques na sua região! descubra e veja informações de eventos e atividades para toda família! </h2>
-            <div className="div_pesquisa_home">
+            {/*<div className="div_pesquisa_home">
               <div className="pesquisa_home">
                 <Image src={icone_pesquisa} alt="icone pesquisa" className="icone_pesquisa_home"></Image>
                 <input type="text" placeholder="Pesquise Parques pelo nome ou localização..." className="inp_pesq"></input>
@@ -93,10 +93,10 @@ export default function Home() {
                 <p className="tit_dados">{qtd_usuários}+</p>
                 <p className="text_dados">Usuários ativos</p>
               </div>
-            </div>
+            </div>*/}
         </div>
         <Image src={parque_cidade} alt="imagem do parque da cidade SSA" title="VUMBORA MEU POVO!" className="img1_home"></Image>
-        </div>
+        </div> 
       </section>
       <section ref={sectionRefs.sobre}>
         <div className="txt_parques">
