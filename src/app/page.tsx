@@ -18,9 +18,14 @@ import telefone from './img/telephone.png';
 import email from './img/mail.png';
 import insta from './img/instagram.png';
 import ttk from './img/tik-tok.png';
+import NavbarMobile from './componentes/navbav_mobile';
+import useTela from './componentes/tela';
 
 export default function Home() {
 
+  const largura = useTela();
+  const isMobile = largura !== null && largura < 768;
+  
   const [isScrolled, setIsScrolled] = useState(false)
   let qtd_usuários = 0
   let qtd_parques = 0
@@ -62,13 +67,18 @@ export default function Home() {
           <Image src={logo_meuparque} alt="logo MeuParque" className="img_icone"></Image>
           <h1>MeuParque</h1>
         </div>
-        <div className="links_header">
-          <button onClick={() => handleClick('home')} className='botao_esp'>Home</button>
-          <button onClick={() => handleClick('sobre')} className='botao_esp'>Sobre Nós</button>
-          <button onClick={() => handleClick('proposito')} className='botao_esp'>Nossa Missão</button>
-          {/*<button onClick={() => handleClick('parques')} className='botao_esp'>Parques</button> 
-          <button onClick={() => handleClick('eventos')} className='botao_esp'>Eventos</button> */}
-        </div>
+        {!isMobile &&(
+          <div className="links_header">
+            <button onClick={() => handleClick('home')} className='botao_esp'>Home</button>
+            <button onClick={() => handleClick('sobre')} className='botao_esp'>Sobre Nós</button>
+            <button onClick={() => handleClick('proposito')} className='botao_esp'>Nossa Missão</button>
+            {/*<button onClick={() => handleClick('parques')} className='botao_esp'>Parques</button> 
+            <button onClick={() => handleClick('eventos')} className='botao_esp'>Eventos</button> */}
+          </div>
+        )} 
+        {isMobile && (
+          <NavbarMobile onNavigate={handleClick} />
+        )}
       </header>
       <section ref={sectionRefs.home}>
         <div className="pag_home">
