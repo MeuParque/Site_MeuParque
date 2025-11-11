@@ -20,3 +20,17 @@
     width: 60px;
 }
 
+.componente_descricao_missao{
+    text-align: start;
+    color:  #717182;
+}
+
+.componente_Nome_missao{
+    color: #7e7b7b;
+    text-align: left;
+    justify-content: flex-start;
+    position: relative;
+    font-size: 15px;
+    font-weight: 550;
+}
+

@@ -21,20 +21,18 @@ import { useRef } from "react";
   };
 
   return (
-    <div>
+    <>
       <button className="botao_menu" onClick={() => setMenuAberto(!menuAberto)}>
-        <Image src={menu_bar} alt="menu bar" className="menu_bar"  onClick={() => setMenuAberto(true)}/>
+        <Image src={menu_bar} alt="menu bar" className="menu_bar" />
       </button>
 
       {menuAberto && (
-        <>
         <nav className="menu_mobile">
             <button onClick={() => handleLinkClick('home')} className='botao_esp'>Home</button>
             <button onClick={() => handleLinkClick('sobre')} className='botao_esp'>Sobre Nós</button>
             <button onClick={() => handleLinkClick('proposito')} className='botao_esp'>Nossa Missão</button>
         </nav>
-        </>
       )}
-    </div>
+    </>
   );
 }

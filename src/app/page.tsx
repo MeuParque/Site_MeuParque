@@ -3,8 +3,6 @@
 import "./Page.css";
 import icone_pesquisa from './img/icone_pesquisa.png';
 import Image from 'next/image';
-import Link from "next/link";
-import logo_meuparque from './img/Icon.png';
 import parque_cidade from './img/parque_da_cidade.jpg';
 import { useRef } from 'react';
 import { useState, useEffect } from 'react';
@@ -20,6 +18,11 @@ import insta from './img/instagram.png';
 import ttk from './img/tik-tok.png';
 import NavbarMobile from './componentes/navbav_mobile';
 import useTela from './componentes/tela';
+import Header from "./componentes/Header";
+import Footer from "./componentes/Footer";
+import coracao from "./img/heart.png";
+import arvore_sobre from "./img/pine-tree.png";
+import comunidade from "./img/people.png"; 
 
 export default function Home() {
 
@@ -30,24 +33,6 @@ export default function Home() {
   let qtd_usuários = 0
   let qtd_parques = 0
   let eventos_menais = 0
-
-
-   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
 
    const sectionRefs = {
       home: useRef<HTMLElement>(null),
@@ -62,24 +47,8 @@ export default function Home() {
   return (
     <div >
      
-      <header id="main-header" className={`header_pag ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="div_icone">
-          <Image src={logo_meuparque} alt="logo MeuParque" className="img_icone"></Image>
-          <h1>MeuParque</h1>
-        </div>
-        {!isMobile &&(
-          <div className="links_header">
-            <button onClick={() => handleClick('home')} className='botao_esp'>Home</button>
-            <button onClick={() => handleClick('sobre')} className='botao_esp'>Sobre Nós</button>
-            <button onClick={() => handleClick('proposito')} className='botao_esp'>Nossa Missão</button>
-            {/*<button onClick={() => handleClick('parques')} className='botao_esp'>Parques</button> 
-            <button onClick={() => handleClick('eventos')} className='botao_esp'>Eventos</button> */}
-          </div>
-        )} 
-        {isMobile && (
-          <NavbarMobile onNavigate={handleClick} />
-        )}
-      </header>
+      
+      <Header onNavigate={handleClick}></Header>
       <section ref={sectionRefs.home}>
         <div className="pag_home">
           <div className="texto_home">
@@ -112,16 +81,42 @@ export default function Home() {
         <div className="txt_parques">
           
           <div className="esquerdasobrenos">
-            <h2 className="tit_parques">Sobre nós</h2>    
-            <h3 className="desc_parque">O MeuParque nasceu da inquietude de um grupo de estudantes aqui de Salvador – o nosso time, carinhosamente chamado de "Coda Fofo".</h3>
-            <h3 className="desc_parque">A gente percebia que os parques da nossa cidade, com tanto potencial, estavam meio esquecidos, separados da comunidade. Vimos que essa falta de vida não era só um problema de mato alto; era um problema social que gerava isolamento e insegurança. Decidimos que não dava para ficar parado.</h3>
-            <h3 className="desc_parque">O MeuParque é a nossa resposta: uma ponte digital criada para religar você ao seu parque, transformando o "espaço público" em "nosso quintal".</h3>
+            <h2 className="tit_parques">Sobre Nós</h2>
+            <p className="desc_parque">
+              O MeuParque nasceu da inquietude de um grupo de estudantes aqui de Salvador – o nosso time, carinhosamente chamado de "Coda Fofo".
+            </p>
+            <p className="desc_parque">
+              A gente percebia que os parques da nossa cidade, com tanto potencial, estavam meio esquecidos, separados da comunidade. Vimos que essa falta de vida não era só um problema de mato alto; era um problema social que gerava isolamento e insegurança. Decidimos que não dava para ficar parado.
+            </p>
+            <p className="desc_parque">
+              O MeuParque é a nossa resposta: uma ponte digital criada para religar você ao seu parque, transformando o "espaço público" em "nosso quintal".
+            </p>
           </div>
           
           <div className="p">
-            <div className="caixa"><h4>Conectar: Ser o hub central que liga moradores, eventos, empreendedores e o poder público.</h4></div>
-            <div className="caixa"><h4>Empoderar: Dar voz e ferramentas à comunidade para a gestão colaborativa e a zeladoria dos espaços.</h4></div>
-            <div className="caixa"><h4>Revitalizar: Gerar oportunidades de renda para artistas e empreendedores, enchendo os parques de atividades, segurança e vida.</h4></div>
+            <div className="caixa">
+              <div className="icone_container icone-verde1">
+                <Image src={arvore_sobre} alt="icone de uma arvore" className="icone_sobre"></Image>
+              </div>
+              <h4>Conexão com a Natureza</h4>
+              <p className="desc_caixa">Revitalizar: Gerar oportunidades de renda para artistas e empreendedores, enchendo os parques de atividades, segurança e vida.</p>
+            </div>
+            
+            <div className="caixa">
+              <div className="icone_container icone-verde2">
+                <Image src={comunidade} alt="icone da comunidade" className="icone_sobre"></Image>
+              </div>
+              <h4>Comunidade Ativa</h4>
+              <p className="desc_caixa">Conectar: Ser o hub central que liga moradores, eventos, empreendedores e o poder público.</p>
+            </div>
+            
+            <div className="caixa">
+              <div className="icone_container icone-laranja">
+                <Image src={coracao} alt="icone de um coração" className="icone_sobre"></Image>
+              </div>
+              <h4>Bem-estar Social</h4>
+              <p className="desc_caixa">Empoderar: Dar voz e ferramentas à comunidade para a gestão colaborativa e a zeladoria dos espaços.</p>
+            </div>
           </div>
 
         </div>
@@ -167,34 +162,7 @@ export default function Home() {
         </div>
       </section>
       <section ref={sectionRefs.eventos}></section> */}
-      <footer className="footer_pag1">
-        <div className="div_foot">
-          <div className="div_icone_foot">
-            <Image src={tree} alt="img arvore" className="img_icone_foot"></Image>
-            <h1 className="tit_foot_logo">MeuParque</h1>
-          </div>
-          <h2 className="txt_foot">Conectando pessoas nas nossas casas públicas</h2>
-        </div><div className="div_foot">
-          <h1 className="tit_foot">Links Rápidos</h1>
-          <button onClick={() => handleClick('home')} className='txt_foot'>Home</button>
-          <button onClick={() => handleClick('sobre')} className='txt_foot'>Sobre Nós</button>
-          <button onClick={() => handleClick('proposito')} className='txt_foot'>Nossa Missão</button>
-        </div><div className="div_foot">
-          <h1 className="tit_foot">Contato</h1>
-          <div className="div_icone_foot">
-            <Image src={email} alt="img email" className="img_icone_foot_txt"></Image>
-            <h2 className="txt_foot">meu.parque.ssa@gmail.com</h2>
-          </div>
-
-        </div><div className="div_foot">
-          <h1 className="tit_foot">Nos siga</h1>
-          <div className="redes_foot">
-            <a href="https://www.instagram.com/meuparquessa/" target="_blank"><Image src={insta} alt="Imagem redireciona instagram" title="Nosso Insta!" className="icone_social_foot"/></a>
-            <a href="https://www.tiktok.com/@meuparque" target="_blank"><Image src={ttk} alt="Imagem redireciona tiktok" title="Nosso TikTok!" className="icone_social_foot"/></a>
-          </div>
-        </div>
-
-      </footer>
+      <Footer onNavigate={handleClick}></Footer>
     </div>
   );
 }
