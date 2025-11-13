@@ -1,0 +1,81 @@
+
+.container_rifa {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+    margin: 2rem auto; 
+}
+
+
+.h1_rifa {
+    font-size: 1.5rem; 
+    font-weight: 700; 
+    text-align: center;
+    color: #1f2937; 
+    margin-top: 0;
+    margin-bottom: 1.5rem; 
+}
+
+.form-group_rifa {
+    margin-bottom: 1.25rem; 
+}
+
+.label_rifa {
+    display: block;
+    font-size: 0.875rem; 
+    font-weight: 500; 
+    color: #4b5563; 
+    margin-bottom: 0.25rem; 
+}
+
+.input_rifa {
+    width: 100%;
+    padding: 0.75rem 1rem; 
+    border: 1px solid #d1d5db; 
+    border-radius: 8px; 
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+    box-sizing: border-box; 
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input_rifa:focus {
+    outline: none;
+    border-color: #2563eb; 
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4); 
+}
+
+.botao_enviar_rifa {
+    width: 100%;
+    background-color: #2563eb; 
+    color: white;
+    font-weight: 700; 
+    padding: 0.85rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.botao_enviar_rifa:hover {
+    background-color: #1d4ed8; 
+}
+
+.link_rifa {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.link_rifa:hover {
+    text-decoration: underline;
+}

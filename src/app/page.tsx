@@ -28,7 +28,7 @@ export default function Home() {
 
   const largura = useTela();
   const isMobile = largura !== null && largura < 768;
-  
+
   const [isScrolled, setIsScrolled] = useState(false)
   let qtd_usuários = 0
   let qtd_parques = 0

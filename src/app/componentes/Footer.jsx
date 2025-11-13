@@ -8,31 +8,46 @@ import telefone from '../img/telephone.png';
 import email from '../img/mail.png';
 import insta from '../img/instagram.png';
 import ttk from '../img/tik-tok.png';
+import { useRouter } from 'next/navigation';
 
-type SectionKey = 'home' | 'proposito' | 'sobre' | 'parques' | 'eventos';
+let cliques = 0;
 
-  type NavbarMobileProps = {
-    onNavigate: (secao: SectionKey) => void;
-  };
+export default function Footer({ onNavigate }){ 
 
-export default function Footer({ onNavigate }: NavbarMobileProps){
+  const router = useRouter();
 
-  const handleLinkClick = (secao: SectionKey) => {
+  const handleLinkClick = (secao) => { 
     onNavigate(secao);
   };
 
     const largura = useTela();
-      const isMobile = largura !== null && largura < 768;
+    const isMobile = largura !== null && largura < 768;
+  
+  function handleClick_rifa(){
+    cliques++;
+    console.log(cliques)
+    const temporizador = setTimeout(Zerar_cliques, 5000)
+    if(cliques >= 7){
+      clearTimeout(temporizador);
+      router.push('/Rifa');
+    }
+  };
+
+  function Zerar_cliques(){
+    cliques = 0;
+  }
 
     return(
         <footer className="footer_pag1">
         <div className="div_foot">
           <div className="div_icone_foot">
             <Image src={tree} alt="img arvore" className="img_icone_foot"></Image>
-            <div className='fot_meuP'>
-              <h1 className='meu_fot'>Meu</h1>
-              <h1 className="tit_foot_logo">Parque</h1>
-            </div>
+            <button onClick={handleClick_rifa} className='botao_rifa'>
+              <div className='fot_meuP'>
+                <h1 className='meu_fot'>Meu</h1>
+                <h1 className="tit_foot_logo">Parque</h1>
+              </div>
+            </button>
           </div>
           <h2 className="txt_foot_conect">Conectando pessoas nas nossas casas públicas</h2>
         </div><div className="div_foot">

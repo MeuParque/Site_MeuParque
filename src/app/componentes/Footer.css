@@ -92,6 +92,10 @@ body {
     gap: 15px;
 }
 
+.botao_rifa{
+    cursor: default;
+}
+
 
 @media (max-width: 768px) {
     
