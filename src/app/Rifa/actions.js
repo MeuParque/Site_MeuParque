@@ -1,6 +1,6 @@
 'use server'; 
 
-import { supabase } from '../lib/supabaseClient'; 
+import { supabaseAdmin } from '../lib/supabaseClient'; 
 import { revalidatePath } from 'next/cache'; 
 
 export async function comprarRifa(dadosFormulario) {
@@ -9,7 +9,7 @@ export async function comprarRifa(dadosFormulario) {
     const numerosArray = numero_rifa_string.trim().split(/\s+/).filter(Boolean);
 
     try {
-        const { data: conflitos, error: selectError } = await supabase
+        const { data: conflitos, error: selectError } = await supabaseAdmin
             .from('Bilhetes')
             .select('numeros_escolhidos') 
             .overlaps('numeros_escolhidos', numerosArray); 
@@ -40,7 +40,7 @@ export async function comprarRifa(dadosFormulario) {
             numeros_escolhidos: numerosArray 
         };
 
-        const { error: insertError } = await supabase
+        const { error: insertError } = await supabaseAdmin
             .from('Bilhetes')
             .insert([dadosDoBilhete]);
 
