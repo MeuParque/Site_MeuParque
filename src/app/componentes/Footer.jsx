@@ -25,7 +25,6 @@ export default function Footer({ onNavigate }){
   
   function handleClick_rifa(){
     cliques++;
-    console.log(cliques)
     const temporizador = setTimeout(Zerar_cliques, 5000)
     if(cliques >= 7){
       clearTimeout(temporizador);
@@ -35,6 +34,7 @@ export default function Footer({ onNavigate }){
 
   function Zerar_cliques(){
     cliques = 0;
+    clearTimeout(temporizador);
   }
 
     return(

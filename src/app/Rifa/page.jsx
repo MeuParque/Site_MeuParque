@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 /*import toast, { Toaster } from 'react-hot-toast'; */
-import "./Page.css" // Importa o Page.css com os nomes _rifa
+import "./Page.css" 
 import Link from 'next/link';
 
 export default function FormRifa() {
@@ -10,18 +10,23 @@ export default function FormRifa() {
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [telofone, setTelefone] = useState('');
-    const [numero_rifa, setNumero_rifa] = useState('');
-
-    
+    const [qtd_rifa, setQtd_rifa] = useState('');
+    const [numero_rifa, setNumero_rifa] = useState(''); 
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
+        const numerosArray = numero_rifa.trim().split(/\s+/).filter(Boolean);
 
         console.log('Dados da Rifa:');
         console.log('Nome:', nome);
         console.log('Email:', email);
         console.log('Telefone:', telofone);
-        console.log('Número:', numero_rifa);
+        console.log('qtd_rifas: ', qtd_rifa);
+        console.log('Números (string):', numero_rifa); 
+        console.log('Números (array):', numerosArray);  
+
+
 {/* toast.promise(
             emailjs.send(
                 process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
@@ -39,6 +44,7 @@ export default function FormRifa() {
             setTelefone("");
             setEmail("");
             setNumero_rifa("");
+            setQtd_rifa(""); // Limpa o novo campo
             setFormvalido(false);
         }).finally(() => {
             setEnviando(false);
@@ -95,20 +101,33 @@ export default function FormRifa() {
                         onChange={(e) => setTelefone(e.target.value)}
                     />
                 </div>
-                
+
                 <div className="form-group_rifa">
-                    <label className="label_rifa" htmlFor="numero_rifa">Número Escolhido</label>
+                    <label className="label_rifa" htmlFor="qtd_rifa">Quantidade de números (rifa)</label>
                     <input 
                         className="input_rifa"
                         type="number" 
+                        id="qtd_rifa" 
+                        name="qtd_rifa" 
+                        placeholder="Ex: 3"
+                        min="1"
+                        required
+                        value={qtd_rifa} 
+                        onChange={(e) => setQtd_rifa(e.target.value)} 
+                    />
+                </div>
+                
+                <div className="form-group_rifa">
+                    <label className="label_rifa" htmlFor="numero_rifa">Números Escolhidos (separados por espaço)</label>
+                    <input 
+                        className="input_rifa"
+                        type="text" 
                         id="numero_rifa" 
                         name="numero_rifa"
-                        placeholder="Ex: 2504"
-                        min="4"
-                        max="4"
+                        placeholder="Ex: 1234 5678 9012"
                         required
-                        value={numero_rifa}
-                        onChange={(e) => setNumero_rifa(e.target.value)}
+                        value={numero_rifa} 
+                        onChange={(e) => setNumero_rifa(e.target.value)} 
                     />
                 </div>
                 
