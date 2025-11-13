@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import "./Page.css" 
 import Link from 'next/link';
 
-import { comprarBilhete } from './actions.js';
+import { comprarRifa } from './actions.js';
 
 export default function FormRifa() {
     
@@ -30,7 +30,7 @@ export default function FormRifa() {
             numero_rifa_string: numero_rifa 
         };
 
-        const resultado = await comprarBilhete(dadosFormulario);
+        const resultado = await comprarRifa(dadosFormulario);
 
         setMessage(resultado.message);
         setLoading(false); 

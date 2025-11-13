@@ -3,7 +3,7 @@
 import { supabase } from '../lib/supabaseClient'; 
 import { revalidatePath } from 'next/cache'; 
 
-export async function comprarBilhete(dadosFormulario) {
+export async function comprarRifa(dadosFormulario) {
 
     const { nome, email, telofone, qtd_rifa, numero_rifa_string } = dadosFormulario;
     const numerosArray = numero_rifa_string.trim().split(/\s+/).filter(Boolean);
