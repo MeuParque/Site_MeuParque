@@ -27,7 +27,6 @@ export default function Footer({ onNavigate }){
     cliques++;
     const temporizador = setTimeout(Zerar_cliques, 5000)
     if(cliques >= 7){
-      clearTimeout(temporizador);
       router.push('/Rifa');
     }
   };

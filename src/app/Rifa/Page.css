@@ -78,3 +78,33 @@
 .link_rifa:hover {
     text-decoration: underline;
 }
+
+.tabela_nums {
+    max-height: 600px; 
+    overflow-y: auto; 
+    margin: 20px auto; 
+    padding: 0 10px; 
+}
+
+.tit_tabela_nums {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.2rem; 
+}
+
+.tbl {
+    border-collapse: collapse; 
+    width: 100%;
+}
+
+.agrupamento {
+    font-size: 12px; 
+    font-family: monospace;
+}
+
+.agrupamento td {
+    border: 1px solid #ccc;
+    padding: 5px;
+    text-align: center;
+    line-height: 1.1; 
+}

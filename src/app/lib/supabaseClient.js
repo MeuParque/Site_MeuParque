@@ -9,9 +9,3 @@ if (!supabaseServiceKey) {
   console.log('AVISO: Chave de serviço (SUPABASE_SERVICE_ROLE_KEY) não encontrada. As Server Actions podem falhar.');
 }
 
-export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
-  auth: {
-    autoRefreshToken: false,
-    persistSession: false
-  }
-});

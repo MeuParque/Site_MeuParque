@@ -1,7 +1,7 @@
 'use server'; 
 
-import { supabaseAdmin } from '../lib/supabaseClient'; 
-import { revalidatePath } from 'next/cache'; 
+import { supabaseAdmin } from '../lib/admin'; 
+import { revalidateTag } from 'next/cache';
 
 export async function comprarRifa(dadosFormulario) {
 
@@ -15,21 +15,29 @@ export async function comprarRifa(dadosFormulario) {
             .overlaps('numeros_escolhidos', numerosArray); 
 
         if (selectError) {
-            throw new Error(`Erro ao verificar números: ${selectError.message}`);
+            console.error('Erro no Supabase ao verificar números:', selectError.message);
+            throw new Error('Erro interno ao verificar a disponibilidade dos números.');
         }
 
         if (conflitos && conflitos.length > 0) {
+            const numerosJaCadastrados = conflitos
+                .map(row => row.numeros_escolhidos)
+                .flat();
             
-            const numerosJaCadastradosArrays = conflitos.map(row => row.numeros_escolhidos);
-            const numerosJaCadastrados = numerosJaCadastradosArrays.flat();
             const setNumerosJaCadastrados = new Set(numerosJaCadastrados);
-            const numerosExatosEmConflito = numerosArray.filter(num => setNumerosJaCadastrados.has(num));
-            const mensagemErro = `ERRO: Os seguintes números já foram cadastrados: ${numerosExatosEmConflito.join(', ')}. Por favor, escolha outros.`;
+            
+            const numerosExatosEmConflito = numerosArray.filter(num => 
+                setNumerosJaCadastrados.has(num)
+            );
+            
+            if (numerosExatosEmConflito.length > 0) {
+                 const mensagemErro = `ERRO: Os seguintes números já foram cadastrados: ${numerosExatosEmConflito.join(', ')}. Por favor, escolha outros.`;
 
-            return { 
-                success: false, 
-                message: mensagemErro
-            };
+                return { 
+                    success: false, 
+                    message: mensagemErro
+                };
+            }
         }
 
         const dadosDoBilhete = {
@@ -45,13 +53,43 @@ export async function comprarRifa(dadosFormulario) {
             .insert([dadosDoBilhete]);
 
         if (insertError) {
-            throw new Error(`Erro ao salvar bilhete: ${insertError.message}`);
+            console.error('Erro no Supabase ao salvar bilhete:', insertError.message);
+            throw new Error('Erro ao finalizar a compra do bilhete.');
         }
 
-        revalidatePath('/Rifa'); 
+        revalidateTag('rifa-numeros');
+        
         return { 
             success: true, 
             message: 'Bilhete comprado com sucesso!' 
+        };
+
+    } catch (error) {
+        return { 
+            success: false, 
+            message: error.message 
+        };
+    }
+}
+
+export async function buscarNumerosComprados() {
+    try {
+        const { data: bilhetes, error } = await supabaseAdmin
+            .from('Bilhetes')
+            .select('numeros_escolhidos'); 
+
+        if (error) {
+            console.error('Erro ao buscar bilhetes:', error);
+            return { success: false, message: 'Erro ao carregar os bilhetes comprados.' };
+        }
+
+        const numerosComprados = bilhetes
+            .map(item => item.numeros_escolhidos || [])
+            .flat();
+
+        return {
+            success: true,
+            numeros: numerosComprados 
         };
 
     } catch (error) {
