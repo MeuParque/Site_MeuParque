@@ -1,4 +1,4 @@
-'use client';
+j'use client';
 
 import React, { useState, useEffect } from 'react';
 import "./Page.css" 
@@ -25,13 +25,13 @@ export default function FormRifa() {
 
     const formaNum = (value) =>{
         value = value.replace(/\D/g,'');
-        return value;
+        return value;j
     }
 
     const formaNumComEscolhidos = (value) => {
         let numeros = value.replace(/\D/g, ''); 
-        const gruposDe4 = numeros.match(/.{1,4}/g) || []; 
-        return gruposDe4.join(' ');
+        const gruposDe3 = numeros.match(/.{1,3}/g) || []; 
+        return gruposDe3.join(' ');
     }
 
     const formaTel = (value) =>{
@@ -51,7 +51,7 @@ export default function FormRifa() {
     }
 
     const formatNumber = (num) => {
-        return String(num).padStart(4, '0');
+        return String(num).padStart(3, '0');
     }
 
     async function fetchNumeros() {
@@ -115,10 +115,10 @@ export default function FormRifa() {
             return;
         }
 
-        const todosCom4Digitos = numerosArray.every(numero => numero.length === 4 && /^\d{4}$/.test(numero));
+        const todosCom3Digitos = numerosArray.every(numero => numero.length === 3 && /^\d{3}$/.test(numero));
         
-        if (!todosCom4Digitos) {
-            setMessage("Todos os números das rifas devem ter 4 dígitos (Ex: 1234).");
+        if (!todosCom3Digitos) {
+            setMessage("Todos os números das rifas devem ter 3 dígitos (Ex: 123).");
             setLoading(false);
             return;
         }
@@ -215,7 +215,7 @@ export default function FormRifa() {
             <Link className="link_rifa" href="/">Voltar</Link>
 
             <div className='tabela_nums'>
-                <h2 className='tit_tabela_nums'>Todos os Números (0000 a 9999)</h2>
+                <h2 className='tit_tabela_nums'>Todos os Números (000 a 999)</h2>
                 <table className='tbl'>
                     <tbody className='agrupamento'>
                         {linhas}
