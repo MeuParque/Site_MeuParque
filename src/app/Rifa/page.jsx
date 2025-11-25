@@ -196,7 +196,7 @@ export default function FormRifa() {
                     <label className="label_rifa" htmlFor="numero_rifa">Números Escolhidos</label>
                     <input 
                         className="input_rifa" type="text" id="numero_rifa" name="numero_rifa"
-                        placeholder="Ex: 1234 5678 9012" required
+                        placeholder="Ex: 123 567 901" required
                         value={numero_rifa} onChange={(e) => setNumero_rifa(formaNumComEscolhidos(e.target.value))}
                     />
                 </div>
