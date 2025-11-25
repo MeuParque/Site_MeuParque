@@ -17,7 +17,7 @@ export default function FormRifa() {
     const [loadingNumeros, setLoadingNumeros] = useState(true);
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false); 
-    const totalNumeros = 10000;
+    const totalNumeros = 1000;
     const numColunas = 10;
     const numLinhas = totalNumeros / numColunas;
 
