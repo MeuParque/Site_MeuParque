@@ -5,7 +5,7 @@ import { revalidateTag } from 'next/cache';
 
 export async function comprarRifa(dadosFormulario) {
 
-    const { nome, email, telofone, qtd_rifa, numero_rifa_string } = dadosFormulario;
+    const { nome, email, telefone, qtd_rifa, numero_rifa_string } = dadosFormulario;
     const numerosArray = numero_rifa_string.trim().split(/\s+/).filter(Boolean);
 
     try {
@@ -43,7 +43,7 @@ export async function comprarRifa(dadosFormulario) {
         const dadosDoBilhete = {
             nome: nome,
             email: email,
-            telefone: telofone,
+            telefone: telefone,
             qtd_rifa: parseInt(qtd_rifa),
             numeros_escolhidos: numerosArray 
         };
